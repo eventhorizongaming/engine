@@ -3,7 +3,8 @@
   "scripts": {
     "start": "npx vite public/",
     "build": "npx vite build",
-    "lint": "npx prettier ./public --write"
+    "lint": "npx prettier ./public --write",
+    "install-dependencies": "npm i && cd public && npm i && cd .."
   },
   "dependencies": {
     "prettier": "3.3.3",
