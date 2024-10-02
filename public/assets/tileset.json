@@ -1,5 +1,5 @@
 {
-  "texture": "assets/bush.png",
+  "texture": "./assets/bush.png",
   "tileSize": [16, 16],
   "gridSize": [5, 1],
   "animatedTiles": {
