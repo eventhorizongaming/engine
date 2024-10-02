@@ -38,7 +38,7 @@ jobs:
       - name: Build app
         run: npm run build
       - name: Copy the assets into the build folder
-        run: cp ./public/assets/ ./build/
+        run: cp -r ./public/assets/ ./build/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
