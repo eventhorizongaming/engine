@@ -59,8 +59,6 @@ class Tileset {
     animationConfig.u = animationSettings?.framesPosition[0] * this.tileSize[0];
     animationConfig.v = animationSettings?.framesPosition[1] * this.tileSize[1];
 
-    console.log(animationConfig.u, animationConfig.v);
-
     // Apply the frame settings
     if (animationSettings?.axis === 'x') {
       animationConfig.animCountX = animationSettings?.numFrames;
