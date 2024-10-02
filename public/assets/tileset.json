@@ -1,0 +1,14 @@
+{
+  "texture": "assets/bush.png",
+  "tileSize": [16, 16],
+  "gridSize": [5, 1],
+  "animatedTiles": {
+    "4,0": {
+      "numFrames": 4,
+      "axis": "x",
+      "fps": 1,
+      "gap": 0,
+      "framesPosition": [0, 0]
+    }
+  }
+}

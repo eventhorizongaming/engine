@@ -1,25 +1,26 @@
 import * as PIXI from 'pixi.js';
+import { Tilemap } from './course/Tilemap';
+import { Tileset } from './course/Tileset';
+
+PIXI.BaseTexture.defaultOptions.scaleMode = 0;
 
 const app = new PIXI.Application({ background: '#1099bb', resizeTo: window });
 
 document.body.appendChild(app.view);
 
-// create a new Sprite from an image path
-const bunny = PIXI.Sprite.from('https://pixijs.com/assets/bunny.png');
+// Create a new tileset
+const test = await Tileset.from('assets/tileset.json');
 
-// center the sprite's anchor point
-bunny.anchor.set(0.5);
+// Create a tilemap
+const tilemap = new Tilemap(test);
+app.stage.addChild(tilemap);
+tilemap.scale.x = 8;
+tilemap.scale.y = 8;
 
-// move the sprite to the center of the screen
-bunny.x = app.screen.width / 2;
-bunny.y = app.screen.height / 2;
-
-app.stage.addChild(bunny);
+let frame = 0;
 
 // Listen for animate update
 app.ticker.add((delta) => {
-  // just for fun, let's rotate mr rabbit a little
-  // delta is 1 if running at 100% performance
-  // creates frame-independent transformation
-  bunny.rotation += 0.1 * delta;
+  tilemap.tileAnim = [Math.floor(frame / 16), Math.floor(frame / 16)];
+  frame++;
 });
