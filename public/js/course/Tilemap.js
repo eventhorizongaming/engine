@@ -4,6 +4,12 @@ import { CompositeTilemap } from '@pixi/tilemap';
  * An extension of the CompositeTilemap that allows you to use tilesets
  */
 export class Tilemap extends CompositeTilemap {
+
+  constructor(...params) {
+    super(...params);
+    this.tileAnim = [0, 0]
+  }
+
   /**
    * Adds a tile to the tilemap instance
    * @param {Tileset} tileset The tileset to add the tile from
@@ -19,5 +25,14 @@ export class Tilemap extends CompositeTilemap {
       tileset.tileSize.y * gridY,
       tileset.getTile(tileX, tileY),
     );
+  }
+
+  /**
+   * Steps the tileset forward in it's animation
+   * @param {number} frames The number of frames forward to step in the animation
+   */
+  step(frames = 1) {
+    this.tileAnim[0] += frames;
+    this.tileAnim[1] += frames;
   }
 }
