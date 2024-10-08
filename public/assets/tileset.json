@@ -6,7 +6,7 @@
     "4,0": {
       "numFrames": 4,
       "axis": "x",
-      "fps": 1,
+      "speed": 1,
       "gap": 0,
       "framesPosition": [0, 0]
     }
