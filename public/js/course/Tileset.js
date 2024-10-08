@@ -49,7 +49,7 @@ class Tileset {
     const animationConfig = {};
 
     // Apply the speed setting
-    animationConfig.animDivisor = 1 / animationSettings?.fps;
+    animationConfig.animDivisor = 1 / animationSettings?.speed;
 
     // Apply tile sizing
     animationConfig.tileWidth = this.tileSize.x;
