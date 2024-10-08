@@ -15,7 +15,7 @@ class Tileset {
    */
   constructor(texture, tileSize, gridSize) {
     this.texture = texture;
-    this.tileSize = tileSize;
+    this.tileSize = { x: tileSize[0], y: tileSize[1] };
     this.gridSize = { x: gridSize[0], y: gridSize[1] };
   }
 
@@ -33,10 +33,10 @@ class Tileset {
     }
 
     return {
-      tileWidth: this.tileSize[0],
-      tileHeight: this.tileSize[1],
-      u: x * this.tileSize[0],
-      v: y * this.tileSize[1],
+      tileWidth: this.tileSize.x,
+      tileHeight: this.tileSize.y,
+      u: x * this.tileSize.x,
+      v: y * this.tileSize.y,
     };
   }
 
@@ -52,20 +52,20 @@ class Tileset {
     animationConfig.animDivisor = 1 / animationSettings?.fps;
 
     // Apply tile sizing
-    animationConfig.tileWidth = this.tileSize[0];
-    animationConfig.tileHeight = this.tileSize[1];
+    animationConfig.tileWidth = this.tileSize.x;
+    animationConfig.tileHeight = this.tileSize.y;
 
     // Apply the position settings
-    animationConfig.u = animationSettings?.framesPosition[0] * this.tileSize[0];
-    animationConfig.v = animationSettings?.framesPosition[1] * this.tileSize[1];
+    animationConfig.u = animationSettings?.framesPosition[0] * this.tileSize.x;
+    animationConfig.v = animationSettings?.framesPosition[1] * this.tileSize.y;
 
     // Apply the frame settings
     if (animationSettings?.axis === 'x') {
       animationConfig.animCountX = animationSettings?.numFrames;
-      animationConfig.animX = this.tileSize[0] + animationSettings?.gap;
+      animationConfig.animX = this.tileSize.x + animationSettings?.gap;
     } else if (animationSettings?.axis === 'y') {
       animationConfig.animCountY = animationSettings?.numFrames;
-      animationConfig.animY = this.tileSize[1] + animationSettings?.gap;
+      animationConfig.animY = this.tileSize.y + animationSettings?.gap;
     }
 
     this.animatedTiles[coords] = animationConfig;
