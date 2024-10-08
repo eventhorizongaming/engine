@@ -8,11 +8,15 @@ const app = new PIXI.Application({ background: '#1099bb', resizeTo: window });
 
 document.body.appendChild(app.view);
 
-// Create a new tileset
-const test = await Tileset.from('assets/tileset.json');
+// Load in a dancing bush tileset
+const testTileset = await Tileset.from('assets/tileset.json');
 
-// Create a tilemap
-const tilemap = new Tilemap(test);
+// Create a new tilemap
+const tilemap = new Tilemap();
+
+// Add a tile to the tilemap
+tilemap.addTile(testTileset, 4, 0, 0, 0);
+
 app.stage.addChild(tilemap);
 tilemap.scale.x = 8;
 tilemap.scale.y = 8;
