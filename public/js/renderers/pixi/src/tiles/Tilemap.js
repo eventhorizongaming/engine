@@ -1,13 +1,12 @@
 import { CompositeTilemap } from '@pixi/tilemap';
 
 /**
- * An extension of the CompositeTilemap that allows you to use tilesets
+ * An extension of the CompositeTilemap that enhances the functionality
  */
 export class Tilemap extends CompositeTilemap {
-
   constructor(...params) {
     super(...params);
-    this.tileAnim = [0, 0]
+    this.tileAnim = [0, 0];
   }
 
   /**
