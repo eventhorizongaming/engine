@@ -1,6 +1,11 @@
 import { loadJSON } from '../../../../util/loaders';
 import { Texture } from 'pixi.js';
 
+/**
+ * A tileset handler for use with a tilemap
+ * @example
+ * const tileset = await Tileset.from("path/to/tileset.json");
+ */
 class Tileset {
   texture;
   tileSize;
@@ -10,8 +15,8 @@ class Tileset {
   /**
    * @constructor
    * @param {PIXI.Texture} texture The base tilemap texture
-   * @param {Array.<number>} tileSize The dimensions of the 
-   * @param {Array.<number>} gridSize The number
+   * @param {Array.<number>} tileSize The dimensions of an individual tile in pixels, using the format [width, height]
+   * @param {Array.<number>} gridSize The number of rows and columns in the tileset, using the format [cols, rows]
    */
   constructor(texture, tileSize, gridSize) {
     this.texture = texture;
@@ -74,7 +79,7 @@ class Tileset {
   /**
    * Loads a tileset from a configuration JSON file
    * @static
-   * @param {string | object} config The path to the json file
+   * @param {string | object} config The path to the json file or a configuration object
    * @returns A new tileset instance
    */
   static async from(config) {
