@@ -1,19 +1,8 @@
-# Basic Vite Template
+# Event Horizon Engine
 
-This template should provide you with the basics you need to get started with your Vite project.  It comes with a live preview, an build script, and automatic GitHub pages deployment.
+![GitHub last commit (main)](https://img.shields.io/github/last-commit/EliasElliotson/eventhorizon/main)
 
-## Scripts
+> [!WARNING]  
+> This project is still in early development!  Many of the features mentioned in this `README.md` file may not have been added yet, and this project is most certainly not ready for production.
 
-There are a couple of scripts you can run to complete specific actions in the app, and they are listed below.
-
-### `npm start`
-
-Use this command to start a live preview of your app.  Recommended for debugging and development purposes.
-
-### `npm run build`
-
-This command will compile all your code for production.  The default build directory is `build/` in the root, but you can change this setting in `vite.config.js`.  Just note that you'll also need to update the path in the GitHub deployments workflow in order to have it deploy properly.
-
-### `npm run lint`
-
-This command will format all of the code in the `public/` directory using Prettier.  You can customize the formatting settings inside of `.prettierrc`.  To fully integrate Prettier with your editor, please check out the [this article](https://prettier.io/docs/en/editors).
+The Event Horizon Engine is a custom-built game engine designed for Event Horizon Gaming.  Programmed in JavaScript, this engine can be used on both on your machine or on the web providing cross-platform experiences for all of your users.  It also uses the pixi.js as the renderer to deliver a blazing fast gaming experience.
