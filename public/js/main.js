@@ -1,6 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { Tilemap } from './course/Tilemap';
-import { Tileset } from './course/Tileset';
+import { Tilemap, Tileset } from './renderers/pixi'
 
 // Make all textures look pixelated
 PIXI.BaseTexture.defaultOptions.scaleMode = 0;
