@@ -1,0 +1,14 @@
+{
+  "texture": "string - The path to the tileset texture that the entire tileset should be based off of.",
+  "tileSize": "[number, number] - The dimensions of a single tile in the tilemap.",
+  "gridSize": "[number, number] - The dimensions of the tilemap's tile grid.  Should include space for extra animated tiles.",
+  "animatedTiles": {
+    "string - Specifies the location of the animated tile in the tile grid.  Should be in the format 'x,y' (e.g. '12,34').": {
+      "numFrames": "number - The number of frames in the animation.",
+      "axis": "string - Whether the tiles for the animation are layed out vertically ('x') or horizontally ('y').",
+      "speed": "number - How many frames should happen in a single tileset animation tick.",
+      "gap": "number - The number of grid cells between the animation frames.",
+      "framesPosition": "[number, number] - The grid cell of the first frame of the animation."
+    }
+  }
+}
