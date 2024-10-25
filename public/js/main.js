@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { Tilemap, Tileset } from './renderers/pixi'
+import { TilesetDisplay, Tileset } from './renderers/pixi'
 
 // Make all textures look pixelated
 PIXI.BaseTexture.defaultOptions.scaleMode = 0;
@@ -13,11 +13,8 @@ document.body.appendChild(app.view);
 // Load in a dancing bush tileset
 const testTileset = await Tileset.from('assets/tileset.json');
 
-// Create a new tilemap
-const tilemap = new Tilemap();
-
-// Add a tile to the tilemap
-tilemap.addTile(testTileset, 4, 0, 0, 0);
+// Create a new tilemap display
+const tilemap = new TilesetDisplay(testTileset);
 
 // Upscale the tilemap
 tilemap.scale.x = 8;
