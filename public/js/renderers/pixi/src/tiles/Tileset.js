@@ -67,10 +67,10 @@ class Tileset {
     // Apply the frame settings
     if (animationSettings?.axis === 'x') {
       animationConfig.animCountX = animationSettings?.numFrames;
-      animationConfig.animX = this.tileSize.x + (animationSettings?.gap * this.tileSize.x);
+      animationConfig.animX = this.tileSize.x + animationSettings?.gap * this.tileSize.x;
     } else if (animationSettings?.axis === 'y') {
       animationConfig.animCountY = animationSettings?.numFrames;
-      animationConfig.animY = this.tileSize.y + (animationSettings?.gap * this.tileSize.y);
+      animationConfig.animY = this.tileSize.y + animationSettings?.gap * this.tileSize.y;
     }
 
     this.animatedTiles[coords] = animationConfig;

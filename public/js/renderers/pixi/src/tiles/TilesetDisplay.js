@@ -1,4 +1,4 @@
-import { Tilemap } from "./Tilemap";
+import { Tilemap } from './Tilemap';
 
 export class TilesetDisplay extends Tilemap {
   constructor(tileset, ...params) {
