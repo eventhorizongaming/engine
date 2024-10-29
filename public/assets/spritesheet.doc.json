@@ -1,0 +1,19 @@
+{
+  "texture": "string - The path to the spritesheet texture that the entire spritesheet should be based off of.",
+  "sprites": {
+    "string - Specifies the name of the non-animated sprite.": {
+      "animated": "boolean - Whether or not the sprite is animated.",
+      "location": "[number, number] - The location of the sprite in the spritesheet.",
+      "size": "[number, number] - The dimensions of the sprite."
+    },
+    "string - Specifies the name of the animated sprite.": {
+      "animated": "boolean - Whether or not the sprite is animated.",
+      "location": "[number, number] - The location of the frame grid.",
+      "size": "[number, number] - The dimensions of each frame in the animation.",
+      "frameCount": "number - The number of frames in the animation.",
+      "frameGap": "[number, number] - The gap between each frame in the frame grid on both the x and y axes.",
+      "speed": "number - How many frames should happen in a single tileset animation tick.",
+      "frameGrid": "[number, number] - The dimensions of the frame grid."
+    }
+  }
+}
