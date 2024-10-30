@@ -25,10 +25,18 @@ export class Sprite extends PIXI.Sprite {
   }
 
   updateTextureFraming() {
-    if (this.texture.valid && this.texture.frame) {
-      const box = this.spritesheet.getSprite(this.currentSprite, this.currentFrame);
-      this.texture.frame = box;
+    const textureFraming = this.spritesheet.getSprite(this.currentSprite, this.currentFrame);
+    this.setTextureFraming(textureFraming);
+  }
+
+  setTextureFraming(frame) {
+    if (this.textureLoaded) {
+      this.texture.frame = frame;
     }
+  }
+
+  get textureLoaded() {
+    return this.texture.valid && this.texture.frame;
   }
 
   /**
