@@ -1,5 +1,5 @@
 import { loadJSON } from '../../../../util/loaders';
-import { Texture } from 'pixi.js';
+import { Texture, Rectangle } from 'pixi.js';
 
 export class SpriteSheet {
   sprites = {};
@@ -23,7 +23,28 @@ export class SpriteSheet {
   }
 
   getSprite(name, frame = 0) {
-    return this.sprites[name][Math.floor(frame % this.sprites[name].length)]
+    const frameBounds = this.sprites[name][Math.floor(frame % this.sprites[name].length)]
+    return frameBounds.clone();
+  }
+
+  static calculateFrameLocation(config, frame) {
+    const frameX = config.location[0] + ((config.size[0] + config.frameGap[0]) * (frame % config.frameGrid[0]))
+    const frameY = config.location[1] + ((config.size[1] + config.frameGap[1]) * Math.floor(frame / config.frameGrid[0]))
+
+    return {x: frameX, y: frameY};
+  }
+
+  static calculateSpriteFrames(spriteConfig) {
+    let frames = [];
+
+    for (let frame = 0; frame < spriteConfig.frameCount; frame++) {
+      const frameLocation = SpriteSheet.calculateFrameLocation(spriteConfig, frame);
+      const frameBox = new Rectangle(frameLocation.x, frameLocation.y, spriteConfig.size[0], spriteConfig.size[1])
+
+      frames.push(frameBox)
+    }
+
+    return frames;
   }
 
   /**
@@ -45,26 +66,17 @@ export class SpriteSheet {
       const spriteData = spritesheetData.sprites[sprite];
 
       if (spriteData.animated) {
-        let frames = [];
-
-        for (let frame = 0; frame < spriteData.frameCount; frame++) {
-          frames.push({
-            x: spriteData.location[0] + ((spriteData.size[0] + spriteData.frameGap[0]) * (frame % spriteData.frameGrid[0])),
-            y: spriteData.location[1] + ((spriteData.size[1] + spriteData.frameGap[1]) * Math.floor(frame / spriteData.frameGrid[0])),
-            w: spriteData.size[0],
-            h: spriteData.size[1]
-          })
-        }
+        const frames = SpriteSheet.calculateSpriteFrames(spriteData);
 
         spritesheet.addSprite(sprite, frames);
       } else {
         spritesheet.addSprite(sprite,
-          {
-            x: spriteData.location[0],
-            y: spriteData.location[1],
-            w: spriteData.size[0],
-            h: spriteData.size[1]
-          }
+          new Rectangle(
+            spriteData.location[0],
+            spriteData.location[1],
+            spriteData.size[0],
+            spriteData.size[1]
+          )
         );
       }
     }

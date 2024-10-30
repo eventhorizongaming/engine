@@ -27,7 +27,7 @@ export class Sprite extends PIXI.Sprite {
   updateTextureFraming() {
     if (this.texture.valid && this.texture.frame) {
       const box = this.spritesheet.getSprite(this.currentSprite, this.currentFrame);
-      this.texture.frame = new PIXI.Rectangle(box.x, box.y, box.w, box.h);
+      this.texture.frame = box;
     }
   }
 
