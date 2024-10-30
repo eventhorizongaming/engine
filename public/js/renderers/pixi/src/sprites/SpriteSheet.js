@@ -14,17 +14,25 @@ export class SpriteSheet {
    * @param {string} name The name of the sprite being added.
    * @param {object | Array<object>} frames An object or an array of objects containing the position, width, and height of each sprite.  Each object should contain x, y, w, and h values.
    */
-  addSprite(name, frames) {
-    if (Array.isArray(frames)) {
-      this.sprites[name] = frames;
-    } else {
-      this.sprites[name] = [frames];
-    }
+  addSprite(name, spriteConfig) {
+    this.sprites[name] = spriteConfig;
+  }
+
+  getFrame(name, frame = 0) {
+    const frameBounds = this.sprites[name].frames[Math.floor(frame % this.getSpriteFrameCount(name))]
+    return frameBounds.clone();
+  }
+
+  getSpriteAnimationSpeed(name) {
+    return this.sprites[name].speed;
+  }
+
+  getSpriteFrameCount(name) {
+    return this.sprites[name].frames.length
   }
 
   getSprite(name, frame = 0) {
-    const frameBounds = this.sprites[name][Math.floor(frame % this.sprites[name].length)]
-    return frameBounds.clone();
+    return this.getFrame(name, frame * this.getSpriteAnimationSpeed(name))
   }
 
   static calculateFrameLocation(config, frame) {
@@ -34,17 +42,30 @@ export class SpriteSheet {
     return {x: frameX, y: frameY};
   }
 
-  static calculateSpriteFrames(spriteConfig) {
-    let frames = [];
+  static calculateSpriteFrames(spriteData) {
+    const frames = [];
 
-    for (let frame = 0; frame < spriteConfig.frameCount; frame++) {
-      const frameLocation = SpriteSheet.calculateFrameLocation(spriteConfig, frame);
-      const frameBox = new Rectangle(frameLocation.x, frameLocation.y, spriteConfig.size[0], spriteConfig.size[1])
+    if (spriteData.animated) {
+      for (let frame = 0; frame < spriteData.frameCount; frame++) {
+        const frameLocation = SpriteSheet.calculateFrameLocation(spriteData, frame);
+        const frameBox = new Rectangle(frameLocation.x, frameLocation.y, spriteData.size[0], spriteData.size[1])
+  
+        frames.push(frameBox)
+      }
+    } else {
+      const frameBox = new Rectangle(spriteData.location[0], spriteData.location[1], spriteData.size[0], spriteData.size[1])
 
       frames.push(frameBox)
     }
 
     return frames;
+  }
+
+  static generateSpriteConfig(spriteData) {
+    return {
+      frames: SpriteSheet.calculateSpriteFrames(spriteData),
+      speed: spriteData?.speed ?? 1
+    }
   }
 
   /**
@@ -64,21 +85,9 @@ export class SpriteSheet {
 
     for (let sprite of sprites) {
       const spriteData = spritesheetData.sprites[sprite];
+      const spriteConfig = SpriteSheet.generateSpriteConfig(spriteData);
 
-      if (spriteData.animated) {
-        const frames = SpriteSheet.calculateSpriteFrames(spriteData);
-
-        spritesheet.addSprite(sprite, frames);
-      } else {
-        spritesheet.addSprite(sprite,
-          new Rectangle(
-            spriteData.location[0],
-            spriteData.location[1],
-            spriteData.size[0],
-            spriteData.size[1]
-          )
-        );
-      }
+      spritesheet.addSprite(sprite, spriteConfig);
     }
 
     return spritesheet;
