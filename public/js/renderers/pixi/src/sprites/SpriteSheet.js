@@ -62,7 +62,7 @@ export class SpriteSheet {
     return this.sprites[name].frames.length
   }
 
-  getSprite(name, frame = 0) {
+  getFrameFromTickNumber(name, frame = 0) {
     return this.getFrame(name, frame * this.getSpriteAnimationSpeed(name))
   }
 

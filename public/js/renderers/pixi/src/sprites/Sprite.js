@@ -28,7 +28,7 @@ export class Sprite extends PIXI.Sprite {
   }
 
   updateTextureFraming() {
-    const textureFraming = this.spritesheet.getSprite(this.currentSprite, this.currentFrame);
+    const textureFraming = this.spritesheet.getFrameFromTickNumber(this.currentSprite, this.currentFrame);
     this.setTextureFraming(textureFraming);
   }
 
