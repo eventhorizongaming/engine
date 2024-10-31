@@ -12,7 +12,7 @@
       "size": [16, 32],
       "frameCount": 3,
       "frameGap": [0, 0],
-      "speed": 2,
+      "speed": 1,
       "frameGrid": [3, 1]
     },
     "jump": {
