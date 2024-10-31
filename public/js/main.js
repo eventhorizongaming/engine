@@ -27,7 +27,7 @@ app.stage.addChild(tilemap);
 // Load in the mario spritesheet
 const spritesheet = await SpriteSheet.from('assets/spritesheet.json');
 
-// Create several Mario sprites
+// Create a Mario sprite
 const mario = new Sprite(spritesheet);
 mario.setSprite('walk')
 
