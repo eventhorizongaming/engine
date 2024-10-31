@@ -1,5 +1,8 @@
 import * as PIXI from 'pixi.js';
 
+/**
+ * An extension of the pixi.js sprite that uses sprites from within a spritesheet
+ */
 export class Sprite extends PIXI.Sprite {
   spritesheet;
   currentSprite;
