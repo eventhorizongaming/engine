@@ -62,10 +62,24 @@ export class SpriteSheet {
     return this.sprites[name].frames.length
   }
 
-  getFrameFromTickNumber(name, frame = 0) {
-    return this.getFrame(name, frame * this.getSpriteAnimationSpeed(name))
+  /**
+   * Gets the frame of the animation based off of a tick number (timestamp).  This is like "getFrame", but factors in the sprite's animation speed.
+   * @param {*} name The name of the sprite to get the frame from.
+   * @param {*} [tickNumber] The tick number (timestamp) of the animation to get the frame from.
+   * @returns A pixi.js rectangle representing the location and dimensions of the frame in the spritesheet.
+   */
+  getFrameFromTickNumber(name, tickNumber = 0) {
+    const spriteAnimationSpeed = this.getSpriteAnimationSpeed(name);
+
+    return this.getFrame(name, tickNumber * spriteAnimationSpeed)
   }
 
+  /**
+   * (For animated sprites), calculates the location of a frame using the animation configuration.
+   * @param {*} config The animation config.
+   * @param {*} frame The frame number of the animation to calculate.
+   * @returns An object with the values "x" and "y" representing the location of the frame in the spritesheet.
+   */
   static calculateFrameLocation(config, frame) {
     const frameX = config.location[0] + ((config.size[0] + config.frameGap[0]) * (frame % config.frameGrid[0]))
     const frameY = config.location[1] + ((config.size[1] + config.frameGap[1]) * Math.floor(frame / config.frameGrid[0]))
