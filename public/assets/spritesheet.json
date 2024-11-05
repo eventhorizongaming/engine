@@ -1,0 +1,24 @@
+{
+  "texture": "./assets/mario.png",
+  "sprites": {
+    "idle": {
+      "animated": false,
+      "location": [32, 0],
+      "size": [16, 32]
+    },
+    "walk": {
+      "animated": true,
+      "location": [0, 0],
+      "size": [16, 32],
+      "frameCount": 3,
+      "frameGap": [0, 0],
+      "speed": 1,
+      "frameGrid": [3, 1]
+    },
+    "jump": {
+      "animated": false,
+      "location": [48, 0],
+      "size": [16, 32]
+    }
+  }
+}
