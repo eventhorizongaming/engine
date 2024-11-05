@@ -14,7 +14,7 @@ export class SpriteSheet {
   /**
    * Creates a new SpriteSheet instance from a texture.
    * @constructor
-   * @param {*} texture The texture the spritesheet is based off of.
+   * @param {PIXI.Texture} texture The texture the spritesheet is based off of.
    */
   constructor(texture) {
     this.texture = texture;
@@ -22,10 +22,10 @@ export class SpriteSheet {
 
   /**
    * Creates an entry for a sprite inside of the spritesheet based off of a configuration object.
-   * @param {*} name A name for the sprite to be stored by.  Will be used to reference the sprite when using "getFrame".
-   * @param {*} spriteConfig Configuration for the sprite.
-   * @param {*} spriteConfig.speed The speed of the animation of the sprite relative to the tick speed.
-   * @param {*} spriteConfig.frames A list of frames within the spritesheet.
+   * @param {string} name A name for the sprite to be stored by.  Will be used to reference the sprite when using "getFrame".
+   * @param {object} spriteConfig Configuration for the sprite.
+   * @param {number} spriteConfig.speed The speed of the animation of the sprite relative to the tick speed.
+   * @param {Array<Rectangle>} spriteConfig.frames A list of frames within the spritesheet.
    */
   addSprite(name, spriteConfig) {
     this.sprites[name] = spriteConfig;
@@ -33,8 +33,8 @@ export class SpriteSheet {
 
   /**
    * Gets a specific frame of an animation from a sprite.
-   * @param {*} name The name of the sprite.
-   * @param {*} [frame] Which frame of the animation to get.  Defaults to 0.
+   * @param {string} name The name of the sprite.
+   * @param {number} [frame] Which frame of the animation to get.  Defaults to 0.
    * @returns A pixi.js rectangle representing the location and dimensions of the frame in the spritesheet.
    */
   getFrame(name, frame = 0) {
@@ -46,7 +46,7 @@ export class SpriteSheet {
 
   /**
    * Gets the speed of the sprite's animation relative to the sprite's tick speed.
-   * @param {*} name The name of the sprite.
+   * @param {string} name The name of the sprite.
    * @returns The animation speed of the sprite.
    */
   getSpriteAnimationSpeed(name) {
@@ -55,7 +55,7 @@ export class SpriteSheet {
 
   /**
    * Gets the number of frames in a sprite's animation.
-   * @param {*} name The name of the sprite.
+   * @param {string} name The name of the sprite.
    * @returns The number of frames in the sprite's animation.
    */
   getSpriteFrameCount(name) {
@@ -64,8 +64,8 @@ export class SpriteSheet {
 
   /**
    * Gets the frame of the animation based off of a tick number (timestamp).  This is like "getFrame", but factors in the sprite's animation speed.
-   * @param {*} name The name of the sprite to get the frame from.
-   * @param {*} [tickNumber] The tick number (timestamp) of the animation to get the frame from.
+   * @param {string} name The name of the sprite to get the frame from.
+   * @param {number} [tickNumber] The tick number (timestamp) of the animation to get the frame from.
    * @returns A pixi.js rectangle representing the location and dimensions of the frame in the spritesheet.
    */
   getFrameFromTickNumber(name, tickNumber = 0) {
@@ -76,8 +76,9 @@ export class SpriteSheet {
 
   /**
    * (For animated sprites), calculates the location of a frame using the animation configuration.
-   * @param {*} config The animation config.
-   * @param {*} frame The frame number of the animation to calculate.
+   * @static
+   * @param {object} config The animation data.
+   * @param {string} frame The frame number of the animation to calculate.
    * @returns An object with the values "x" and "y" representing the location of the frame in the spritesheet.
    */
   static calculateFrameLocation(config, frame) {
@@ -87,6 +88,12 @@ export class SpriteSheet {
     return {x: frameX, y: frameY};
   }
 
+  /**
+   * Generates an array of frame boxes for the given sprite configuration
+   * @static
+   * @param {object} spriteData The sprite configuration
+   * @returns An array of frame boxes
+   */
   static calculateSpriteFrames(spriteData) {
     const frames = [];
 
@@ -106,6 +113,11 @@ export class SpriteSheet {
     return frames;
   }
 
+  /**
+   * Generates a sprite configuration object from the sprite data
+   * @param {object} spriteData The sprite data
+   * @returns A brand new sprite configuration object
+   */
   static generateSpriteConfig(spriteData) {
     return {
       frames: SpriteSheet.calculateSpriteFrames(spriteData),
