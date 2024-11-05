@@ -21,9 +21,9 @@ export class Sprite extends PIXI.Sprite {
     this.currentSprite = Object.keys(spritesheet.sprites)[0];
 
     // Update the texture's framing when it's loaded
-    this.texture.baseTexture.on("loaded", () => {
+    this.texture.baseTexture.on('loaded', () => {
       this.updateTextureFraming();
-    })
+    });
   }
 
   /**
@@ -40,7 +40,10 @@ export class Sprite extends PIXI.Sprite {
    * Updates the texture's framing from the animation/sprite settings
    */
   updateTextureFraming() {
-    const textureFraming = this.spritesheet.getFrameFromTickNumber(this.currentSprite, this.currentFrame);
+    const textureFraming = this.spritesheet.getFrameFromTickNumber(
+      this.currentSprite,
+      this.currentFrame,
+    );
     this.setTextureFraming(textureFraming);
   }
 

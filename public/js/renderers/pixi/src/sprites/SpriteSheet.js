@@ -39,7 +39,7 @@ export class SpriteSheet {
    */
   getFrame(name, frame = 0) {
     const frames = this.sprites[name].frames;
-    const frameBounds = frames[Math.floor(frame % frames.length)]
+    const frameBounds = frames[Math.floor(frame % frames.length)];
 
     return frameBounds.clone();
   }
@@ -59,7 +59,7 @@ export class SpriteSheet {
    * @returns The number of frames in the sprite's animation.
    */
   getSpriteFrameCount(name) {
-    return this.sprites[name].frames.length
+    return this.sprites[name].frames.length;
   }
 
   /**
@@ -71,7 +71,7 @@ export class SpriteSheet {
   getFrameFromTickNumber(name, tickNumber = 0) {
     const spriteAnimationSpeed = this.getSpriteAnimationSpeed(name);
 
-    return this.getFrame(name, tickNumber * spriteAnimationSpeed)
+    return this.getFrame(name, tickNumber * spriteAnimationSpeed);
   }
 
   /**
@@ -82,10 +82,13 @@ export class SpriteSheet {
    * @returns An object with the values "x" and "y" representing the location of the frame in the spritesheet.
    */
   static calculateFrameLocation(config, frame) {
-    const frameX = config.location[0] + ((config.size[0] + config.frameGap[0]) * (frame % config.frameGrid[0]))
-    const frameY = config.location[1] + ((config.size[1] + config.frameGap[1]) * Math.floor(frame / config.frameGrid[0]))
+    const frameX =
+      config.location[0] + (config.size[0] + config.frameGap[0]) * (frame % config.frameGrid[0]);
+    const frameY =
+      config.location[1] +
+      (config.size[1] + config.frameGap[1]) * Math.floor(frame / config.frameGrid[0]);
 
-    return {x: frameX, y: frameY};
+    return { x: frameX, y: frameY };
   }
 
   /**
@@ -100,14 +103,24 @@ export class SpriteSheet {
     if (spriteData.animated) {
       for (let frame = 0; frame < spriteData.frameCount; frame++) {
         const frameLocation = SpriteSheet.calculateFrameLocation(spriteData, frame);
-        const frameBox = new Rectangle(frameLocation.x, frameLocation.y, spriteData.size[0], spriteData.size[1])
-  
-        frames.push(frameBox)
+        const frameBox = new Rectangle(
+          frameLocation.x,
+          frameLocation.y,
+          spriteData.size[0],
+          spriteData.size[1],
+        );
+
+        frames.push(frameBox);
       }
     } else {
-      const frameBox = new Rectangle(spriteData.location[0], spriteData.location[1], spriteData.size[0], spriteData.size[1])
+      const frameBox = new Rectangle(
+        spriteData.location[0],
+        spriteData.location[1],
+        spriteData.size[0],
+        spriteData.size[1],
+      );
 
-      frames.push(frameBox)
+      frames.push(frameBox);
     }
 
     return frames;
@@ -121,8 +134,8 @@ export class SpriteSheet {
   static generateSpriteConfig(spriteData) {
     return {
       frames: SpriteSheet.calculateSpriteFrames(spriteData),
-      speed: spriteData?.speed ?? 1
-    }
+      speed: spriteData?.speed ?? 1,
+    };
   }
 
   /**
