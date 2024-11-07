@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { TilesetDisplay, Tileset, SpriteSheet, Sprite } from './lib';
+import { TilesetDisplay, Tileset, SpriteSheet, Sprite } from '../lib';
 
 // Make all textures look pixelated
 PIXI.BaseTexture.defaultOptions.scaleMode = 0;
@@ -12,7 +12,7 @@ globalThis.__PIXI_APP__ = app;
 document.body.appendChild(app.view);
 
 // Load in a dancing bush tileset
-const testTileset = await Tileset.from('assets/tileset.json');
+const testTileset = await Tileset.from('project/assets/tileset.json');
 
 // Create a new tilemap display
 const tilemap = new TilesetDisplay(testTileset);
@@ -25,7 +25,7 @@ tilemap.scale.y = 8;
 app.stage.addChild(tilemap);
 
 // Load in the mario spritesheet
-const spritesheet = await SpriteSheet.from('assets/spritesheet.json');
+const spritesheet = await SpriteSheet.from('project/assets/spritesheet.json');
 
 // Create a Mario sprite
 const mario = new Sprite(spritesheet);
