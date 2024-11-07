@@ -15,7 +15,7 @@ import { loadText } from './src/util/loaders/textLoader';
 
 import { Path } from './src/util/path';
 
-import { runWith } from './src/util/with';
+import { runWith, runWithAsync } from './src/util/with';
 
 // Export all of the modules
 export {
@@ -30,4 +30,5 @@ export {
   loadText,
   Path,
   runWith,
+  runWithAsync
 };
