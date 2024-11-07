@@ -14,7 +14,7 @@ export class Runner {
 
   async initialize() {
     this.projectConfig = await loadJSON(this.projectPath + 'config.json');
-    this.projectScript = await loadText(this.projectPath + 'main2.js');
+    this.projectScript = await loadText(this.projectPath + 'main.js');
     console.log(this.projectScript);
   }
 
@@ -26,6 +26,7 @@ export class Runner {
 
   static async load(projectPath) {
     const runner = new Runner(projectPath);
+
     await runner.initialize();
     runner.executeProjectScript();
     

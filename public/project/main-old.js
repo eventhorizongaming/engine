@@ -1,3 +1,6 @@
+import * as PIXI from 'pixi.js';
+import { TilesetDisplay, Tileset, SpriteSheet, Sprite } from '../lib';
+
 // Make all textures look pixelated
 PIXI.BaseTexture.defaultOptions.scaleMode = 0;
 
