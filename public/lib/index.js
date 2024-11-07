@@ -15,6 +15,8 @@ import { loadText } from './src/util/loaders/textLoader';
 
 import { Path } from './src/util/path';
 
+import { runWith } from './src/util/with';
+
 // Export all of the modules
 export {
   PIXI,
@@ -27,4 +29,5 @@ export {
   loadJSON,
   loadText,
   Path,
+  runWith,
 };
