@@ -1,6 +1,3 @@
-// Make all textures look pixelated
-PIXI.BaseTexture.defaultOptions.scaleMode = 0;
-
 // Load in a dancing bush tileset
 const testTileset = await Tileset.from('/resources/tilesets/tileset.json');
 

@@ -2,6 +2,13 @@
   "rendering": {
     "application": {
       "background": "#1099bb"
+    },
+    "defaults": {
+      "baseTexture": {
+        "scaleMode": 0
+      },
+      "bitmapFont": {},
+      "htmlTextStyle": {}
     }
   }
 }

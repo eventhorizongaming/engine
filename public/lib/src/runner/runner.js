@@ -23,6 +23,26 @@ export class Runner {
     this.renderer = new ENGINE.PIXI.Application({ resizeTo: window, ...this.projectConfig.rendering.application });
     document.body.appendChild(this.renderer.view);
     globalThis.__PIXI_APP__ = this.renderer;
+
+    this.updateRendererDefaults();
+  }
+
+  updateRendererDefaults() {
+    const baseTextureOptions = this.projectConfig.rendering.defaults.baseTexture;
+    const bitmapFontOptions = this.projectConfig.rendering.defaults.bitmapFont;
+    const htmlTextStyleOptions = this.projectConfig.rendering.defaults.htmlTextStyle;
+
+    for (const property of Object.keys(baseTextureOptions)) {
+      ENGINE.PIXI.BaseTexture.defaultOptions[property] = baseTextureOptions[property];
+    }
+
+    for (const property of Object.keys(bitmapFontOptions)) {
+      ENGINE.PIXI.BitmapFont.defaultOptions[property] = bitmapFontOptions[property];
+    }
+
+    for (const property of Object.keys(htmlTextStyleOptions)) {
+      ENGINE.PIXI.HTMLTextStyle.defaultOptions[property] = htmlTextStyleOptions[property];
+    }
   }
 
   initializeScriptEnvironment() {
