@@ -1,3 +1,6 @@
+// Import the runner related modules
+import { Runner } from './src/runner/runner';
+
 // Import the renderer related modules
 import * as PIXI from 'pixi.js';
 import * as TILEMAPS from '@pixi/tilemap';
@@ -19,6 +22,7 @@ import { runWith, runWithAsync } from './src/util/with';
 
 // Export all of the modules
 export {
+  Runner,
   PIXI,
   TILEMAPS,
   Tilemap,
