@@ -1,4 +1,4 @@
-import { loadJSON } from '../../../../util/loaders';
+import { loadJSON } from '../../../util/loaders';
 import { Texture } from 'pixi.js';
 
 /**
