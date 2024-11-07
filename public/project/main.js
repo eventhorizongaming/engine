@@ -5,14 +5,14 @@ import { TilesetDisplay, Tileset, SpriteSheet, Sprite } from '../lib';
 PIXI.BaseTexture.defaultOptions.scaleMode = 0;
 
 // Create a new pixi.js app
-const app = new PIXI.Application({ background: '#1099bb', resizeTo: window });
+const app = new PIXI.Application({ resizeTo: window });
 globalThis.__PIXI_APP__ = app;
 
 // Add the app to the dom
 document.body.appendChild(app.view);
 
 // Load in a dancing bush tileset
-const testTileset = await Tileset.from('project/assets/tileset.json');
+const testTileset = await Tileset.from('/resources/tilesets/tileset.json');
 
 // Create a new tilemap display
 const tilemap = new TilesetDisplay(testTileset);
@@ -25,7 +25,7 @@ tilemap.scale.y = 8;
 app.stage.addChild(tilemap);
 
 // Load in the mario spritesheet
-const spritesheet = await SpriteSheet.from('project/assets/spritesheet.json');
+const spritesheet = await SpriteSheet.from('/resources/spritesheets/spritesheet.json');
 
 // Create a Mario sprite
 const mario = new Sprite(spritesheet);
