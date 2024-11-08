@@ -17,6 +17,9 @@ export class Runner {
   async initialize() {
     this.projectConfig = await loadJSON(this.projectPath + 'config.json');
     this.projectScript = await loadText(this.projectPath + 'main.js');
+
+    await this.initializeRenderer();
+    this.initializeScriptEnvironment();
   }
 
   async initializeRenderer() {
@@ -52,18 +55,18 @@ export class Runner {
     }
   }
 
-  executeProjectScript() {
-    const projectScriptFunction = eval(`(async function () {\n${this.projectScript}\n})`);
+  executeScript(script) {
+    const projectScriptFunction = eval(`(async function () {\n${script}\n})`);
     runWithAsync(this.scriptEnvironment, projectScriptFunction);
+  }
+
+  start() {
+    this.executeScript(this.projectScript);
   }
 
   static async load(projectPath) {
     const runner = new Runner(projectPath);
-
     await runner.initialize();
-    await runner.initializeRenderer();
-    runner.initializeScriptEnvironment();
-    runner.executeProjectScript();
     
     return runner;
   }

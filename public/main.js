@@ -1,3 +1,4 @@
 import { Runner } from "./lib";
 
-const projectRunner = Runner.load('./project/')
+const projectRunner = await Runner.load('./project/')
+projectRunner.start();
