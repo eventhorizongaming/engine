@@ -3,6 +3,9 @@ import { loadJSON } from "../util/loaders/jsonLoader";
 import { loadText } from "../util/loaders/textLoader";
 import { runWithAsync } from '../util/with';
 
+/**
+ * An engine that can execute a game instance
+ */
 export class Runner {
   projectPath;
   projectConfig;
@@ -10,10 +13,19 @@ export class Runner {
   scriptEnvironment;
   renderer;
 
+  /**
+   * Creates a new runner instance
+   * @constructor
+   * @param {string} projectPath The path to the project folder
+   */
   constructor(projectPath) {
     this.projectPath = projectPath;
   }
 
+  /**
+   * Initializes the class variables and executes initialization functions
+   * @async
+   */
   async initialize() {
     this.projectConfig = await loadJSON(this.projectPath + 'config.json');
     this.projectScript = await loadText(this.projectPath + 'main.js');
@@ -22,6 +34,10 @@ export class Runner {
     this.initializeScriptEnvironment();
   }
 
+  /**
+   * Initializes the PIXI.js runner and its config
+   * @async
+   */
   async initializeRenderer() {
     this.renderer = new ENGINE.PIXI.Application({ resizeTo: window, ...this.projectConfig.rendering.application });
     document.body.appendChild(this.renderer.view);
@@ -30,6 +46,9 @@ export class Runner {
     this.updateRendererDefaults();
   }
 
+  /**
+   * Uses the information from the configuration to redefine the renderer's default settings
+   */
   updateRendererDefaults() {
     const baseTextureOptions = this.projectConfig.rendering.defaults.baseTexture;
     const bitmapFontOptions = this.projectConfig.rendering.defaults.bitmapFont;
@@ -48,6 +67,9 @@ export class Runner {
     }
   }
 
+  /**
+   * Generates a script environment for the runner.
+   */
   initializeScriptEnvironment() {
     this.scriptEnvironment = {
       ...ENGINE,
@@ -55,15 +77,29 @@ export class Runner {
     }
   }
 
+  /**
+   * Executes a string as a game script
+   * @param {string} script The script to execute
+   */
   executeScript(script) {
     const projectScriptFunction = eval(`(async function () {\n${script}\n})`);
     runWithAsync(this.scriptEnvironment, projectScriptFunction);
   }
 
+  /**
+   * Begins the execution of the game
+   */
   start() {
     this.executeScript(this.projectScript);
   }
 
+  /**
+   * Loads a game instance from a folder
+   * @async
+   * @static
+   * @param {string} projectPath The path to the folder
+   * @returns A brand new, fully initialized runner instance using the config from the game folder
+   */
   static async load(projectPath) {
     const runner = new Runner(projectPath);
     await runner.initialize();
