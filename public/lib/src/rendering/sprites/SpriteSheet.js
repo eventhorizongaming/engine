@@ -1,4 +1,4 @@
-import { loadJSON } from '../../../../util/loaders';
+import { loadJSON } from '../../util/loaders/jsonLoader';
 import { Texture, Rectangle } from 'pixi.js';
 
 /**
@@ -145,10 +145,11 @@ export class SpriteSheet {
    * @returns A new tileset instance
    */
   static async from(config) {
-    const spritesheetData = typeof config === 'string' ? await loadJSON(config) : config;
+    const spritesheetData =
+      typeof config === 'string' ? await loadJSON('./project' + config) : config;
 
     const texturePath = spritesheetData.texture;
-    const texture = Texture.from(texturePath);
+    const texture = Texture.from('./project/assets' + texturePath);
 
     const spritesheet = new SpriteSheet(texture);
     const sprites = Object.keys(spritesheetData.sprites);

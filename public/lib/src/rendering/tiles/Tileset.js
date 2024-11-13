@@ -1,4 +1,4 @@
-import { loadJSON } from '../../../../util/loaders';
+import { loadJSON } from '../../util/loaders/jsonLoader';
 import { Texture } from 'pixi.js';
 
 /**
@@ -83,10 +83,10 @@ class Tileset {
    * @returns A new tileset instance
    */
   static async from(config) {
-    const tilesetData = typeof config === 'string' ? await loadJSON(config) : config;
+    const tilesetData = typeof config === 'string' ? await loadJSON('./project' + config) : config;
 
     const texturePath = tilesetData.texture;
-    const texture = Texture.from(texturePath);
+    const texture = Texture.from('./project/assets' + texturePath);
 
     const tileset = new Tileset(texture, tilesetData.tileSize, tilesetData.gridSize);
 

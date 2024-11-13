@@ -1,6 +1,14 @@
 import { Tilemap } from './Tilemap';
 
+/**
+ * A container to display every tile in a tilemap
+ */
 export class TilesetDisplay extends Tilemap {
+  /**
+   * Creates a new tileset display instance
+   * @param {Tileset} tileset The tileset to generate a display from
+   * @param  {...any} params Extra params that the tilemap should use
+   */
   constructor(tileset, ...params) {
     super(...params);
 
