@@ -40,7 +40,7 @@ export class Runner {
    */
   async initializeRenderer() {
     this.renderer = new ENGINE.PIXI.Application({ resizeTo: window, ...this.projectConfig.rendering.application });
-    document.body.appendChild(this.renderer.view);
+    //document.body.appendChild(this.renderer.view);
     globalThis.__PIXI_APP__ = this.renderer;
 
     this.updateRendererDefaults();
@@ -91,6 +91,13 @@ export class Runner {
    */
   start() {
     this.executeScript(this.projectScript);
+  }
+
+  /**
+   * The canvas the game wil render on
+   */
+  get canvas() {
+    return this.renderer.view;
   }
 
   /**
