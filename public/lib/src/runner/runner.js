@@ -1,6 +1,6 @@
-import * as ENGINE from '../../index'
-import { loadJSON } from "../util/loaders/jsonLoader";
-import { loadText } from "../util/loaders/textLoader";
+import * as ENGINE from '../../index';
+import { loadJSON } from '../util/loaders/jsonLoader';
+import { loadText } from '../util/loaders/textLoader';
 import { runWithAsync } from '../util/with';
 
 /**
@@ -39,7 +39,10 @@ export class Runner {
    * @async
    */
   async initializeRenderer() {
-    this.renderer = new ENGINE.PIXI.Application({ resizeTo: window, ...this.projectConfig.rendering.application });
+    this.renderer = new ENGINE.PIXI.Application({
+      resizeTo: window,
+      ...this.projectConfig.rendering.application,
+    });
     //document.body.appendChild(this.renderer.view);
     globalThis.__PIXI_APP__ = this.renderer;
 
@@ -73,8 +76,8 @@ export class Runner {
   initializeScriptEnvironment() {
     this.scriptEnvironment = {
       ...ENGINE,
-      renderer: this.renderer
-    }
+      renderer: this.renderer,
+    };
   }
 
   /**
@@ -110,7 +113,7 @@ export class Runner {
   static async load(projectPath) {
     const runner = new Runner(projectPath);
     await runner.initialize();
-    
+
     return runner;
   }
 }

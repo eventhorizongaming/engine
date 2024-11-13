@@ -23,6 +23,6 @@ export class Path {
    * @returns Whether or not it's a relative url
    */
   static isRelative(url) {
-    return url.startsWith('.')
+    return url.startsWith('.');
   }
 }

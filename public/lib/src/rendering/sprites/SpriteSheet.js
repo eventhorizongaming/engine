@@ -145,7 +145,8 @@ export class SpriteSheet {
    * @returns A new tileset instance
    */
   static async from(config) {
-    const spritesheetData = typeof config === 'string' ? await loadJSON('./project' + config) : config;
+    const spritesheetData =
+      typeof config === 'string' ? await loadJSON('./project' + config) : config;
 
     const texturePath = spritesheetData.texture;
     const texture = Texture.from('./project/assets' + texturePath);

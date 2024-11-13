@@ -34,5 +34,5 @@ export {
   loadText,
   Path,
   runWith,
-  runWithAsync
+  runWithAsync,
 };

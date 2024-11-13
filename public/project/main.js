@@ -16,7 +16,7 @@ const spritesheet = await SpriteSheet.from('/resources/spritesheets/spritesheet.
 
 // Create a Mario sprite
 const mario = new Sprite(spritesheet);
-mario.setSprite('walk')
+mario.setSprite('walk');
 
 mario.position.y = 128;
 mario.scale.x = 8;

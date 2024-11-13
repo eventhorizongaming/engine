@@ -4,12 +4,14 @@
  * @param {function} func The function to execute
  */
 export function runWith(env, func) {
-
   // Transpile the input function into a function with newer parameters
   const functionString = func.toString();
-  const functionBody = functionString.slice(functionString.indexOf("{") + 1, functionString.lastIndexOf("}"));
+  const functionBody = functionString.slice(
+    functionString.indexOf('{') + 1,
+    functionString.lastIndexOf('}'),
+  );
   const newFunctionParams = `{ ${Object.keys(env).join(', ')} }`;
-  const newFunctionString = `function (\n${newFunctionParams}) {${functionBody}\n}`
+  const newFunctionString = `function (\n${newFunctionParams}) {${functionBody}\n}`;
   const newFunction = eval(`(${newFunctionString})`);
 
   // Execute the transpiled function
@@ -22,12 +24,14 @@ export function runWith(env, func) {
  * @param {function} func The function to execute
  */
 export async function runWithAsync(env, func) {
-
   // Transpile the input function into a function with newer parameters
   const functionString = func.toString();
-  const functionBody = functionString.slice(functionString.indexOf("{") + 1, functionString.lastIndexOf("}"));
+  const functionBody = functionString.slice(
+    functionString.indexOf('{') + 1,
+    functionString.lastIndexOf('}'),
+  );
   const newFunctionParams = `{ ${Object.keys(env).join(', ')} }`;
-  const newFunctionString = `async function (\n${newFunctionParams}) {${functionBody}\n}`
+  const newFunctionString = `async function (\n${newFunctionParams}) {${functionBody}\n}`;
   const newFunction = eval(`(${newFunctionString})`);
 
   // Execute the transpiled function
